@@ -1,0 +1,6 @@
+<%= form_for @changeset, idea_path(@conn, :create), fn f -> %>
+  <div class="form-group">
+    <%= text_input f, :title, class: "form-control", placeholder: "Submit your idea...", maxlength: "301" %>
+    <%= error_tag f, :title %>
+  </div>
+<% end %>
