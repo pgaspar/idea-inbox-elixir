@@ -1,0 +1,27 @@
+<h2>Show Idea</h2>
+
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @idea.title %>
+  </li>
+
+  <li>
+    <strong>Up votes:</strong>
+    <%= @idea.up_votes %>
+  </li>
+
+  <li>
+    <strong>Down votes:</strong>
+    <%= @idea.down_votes %>
+  </li>
+
+  <li>
+    <strong>Created at:</strong>
+    <%= @idea.inserted_at %>
+  </li>
+
+</ul>
+
+<span><%= link "Back", to: idea_path(@conn, :index) %></span>
