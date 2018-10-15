@@ -13,7 +13,7 @@ It serves as an example application for people to try out new languages and fram
 ## TODO ✅
 
 - [x] Idea submission
-- [ ] Voting
+- [x] Voting
 - [ ] Idea comments
 - [ ] Real-time idea comments and voting using sockets
 - [ ] Admin panel w/ some authentication

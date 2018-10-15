@@ -2,7 +2,7 @@ defmodule IdeaInboxWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", IdeaInboxWeb.RoomChannel
+  channel "votes:*", IdeaInboxWeb.VotesChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

@@ -2,6 +2,7 @@ defmodule IdeaInbox.Ideas.Idea do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @derive {Poison.Encoder, only: [:id, :up_votes, :down_votes]}
 
   schema "ideas" do
     field :title, :string
@@ -14,7 +15,7 @@ defmodule IdeaInbox.Ideas.Idea do
   @doc false
   def changeset(idea, attrs) do
     idea
-    |> cast(attrs, [:title])
+    |> cast(attrs, [:title, :up_votes, :down_votes])
     |> validate_required([:title])
   end
 end

@@ -53,10 +53,33 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 
 socket.connect()
 
-// Now that you are connected, you can join channels with a topic:
-let channel = socket.channel("topic:subtopic", {})
-channel.join()
-  .receive("ok", resp => { console.log("Joined successfully", resp) })
-  .receive("error", resp => { console.log("Unable to join", resp) })
+const createSocket = (ideaId) => {
+  let channel = socket.channel(`votes:${ideaId}`, {})
+  channel
+    .join()
+    .receive("ok", resp => {
+      console.log("Joined successfully", resp)
+    })
+    .receive("error", resp => {
+      console.log("Unable to join", resp)
+    });
 
-export default socket
+  channel.on(`votes:update`, updateVotes);
+
+  document.querySelector(`#idea-${ideaId} #vote-up`).addEventListener('click', (event) => {
+    const ideaId = event.target.parentElement.getAttribute('data-idea-id');
+    channel.push(`votes:vote_up`, {});
+  });
+
+  document.querySelector(`#idea-${ideaId} #vote-down`).addEventListener('click', (event) => {
+    const ideaId = event.target.parentElement.getAttribute('data-idea-id');
+    channel.push(`votes:vote_down`, {});
+  });
+}
+
+function updateVotes(event) {
+  const idea = event.idea;
+  document.querySelector(`#vote-score-${idea.id}`).innerHTML = idea.up_votes - idea.down_votes;
+}
+
+window.createSocket = createSocket;

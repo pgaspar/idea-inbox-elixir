@@ -27,12 +27,18 @@
                     </p>
                   </td>
                   <td class="idea-votes">
-                    <span id="vote_score_<%= idea.id %>"><%= idea.up_votes - idea.down_votes %></span><br/>
+                    <span id="vote-score-<%= idea.id %>"><%= idea.up_votes - idea.down_votes %></span><br/>
                     <div class="btn-group" data-idea-id="<%= idea.id %>">
-                      <button id="bt-up" value="true" class="btn btn-mini up">▲</button>
-                      <button id="bt-dw" value="false" class="btn btn-mini down">▼</button>
+                      <button id="vote-up" value="true" class="btn btn-mini up">▲</button>
+                      <button id="vote-down" value="false" class="btn btn-mini down">▼</button>
                     </div>
                   </td>
+
+                  <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                      window.createSocket(<%= idea.id %>);
+                    });
+                  </script>
                 </tr>
               <% end %>
             </tbody>
